@@ -1,3 +1,6 @@
+#_Install Rgraphviz_# 
+##source("http://bioconductor.org/biocLite.R")
+##biocLite("Rgraphviz")
 #__Load Libraries__#
 library("twitteR")
 library("tm")
@@ -15,7 +18,7 @@ roch_frame <- do.call("rbind", lapply(roch, as.data.frame))                     
 roch_text_corpus <- Corpus(VectorSource(roch_frame$text))                            #Coverts to VCorpus
 
 #__Data Normalization__#
-myStopwords <- c(stopwords('english'), "available", "via","r","rt",'new',"amp",'rochester','go','us','Rochester','will','rochest','ny','roc','get','come')
+myStopwords <- c(stopwords('english'), "available", "via","r","rt",'new',"amp",'rochester','go','us','man','im','Rochester','will','rochest','ny','roc','get','come')
 removeURLs <- function(x) gsub("http[[:alnum:]]*","",x)
 removenalnum <- function(x) gsub("[^[:alnum:][:blank:]]", "", x, ignore.case = TRUE)
 roch_text_corpus <- tm_map(roch_text_corpus, content_transformer(removePunctuation)) #Removes Punctuation
@@ -49,7 +52,10 @@ distMatrix <- dist(scale(roch_text_corpus.matrix2))                             
 roch_text_corpus.fit<-hclust(distMatrix,method="ward.D")                              #Using Ward method create a hcluster
 plot(roch_text_corpus.fit, cex=.9, hang=-1, main="Cluster")                           #Plot the Hcluster
 rect.hclust(roch_text_corpus.fit, k=3)                                                #Create 4 Clusters
-
+#__Creates Correlation Network__#
+plot(roch_text_corpus.tdm2,                                                           #Creates and Plots a network
+     terms=findFreqTerms(roch_text_corpus.tdm2, lowfreq=100)[1:13],
+     corThreshold=0.5)
 
 #__Comparison and Commonality Cloud__#
 
