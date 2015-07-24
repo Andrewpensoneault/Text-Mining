@@ -6,10 +6,10 @@ library("twitteR")
 library("tm")
 library("wordcloud")
 #__Access Twitter__#
-Consumer_Key='PVGAE0zl98t5IfSCftTYjQhhS'
-Consumer_Secret='X8PU5hQOPKIyKun0MuzU5xz9Qa8ZB2VzmFp2l6jh7VkGvIvfOc'
-Access_Token='1850000318-PXbm5PNq0kW8agR8bYcA52gF9cAhDkfmenJrmi6'
-Access_Token_Secret='wwQ1EHQU4wWm0Q8LFXEaG6iWabb4fwSZKXZcyIePzHGLN'
+Consumer_Key=''                  #Enter information from dev.twitter.com
+Consumer_Secret=''
+Access_Token=''
+Access_Token_Secret=''
 setup_twitter_oauth(Consumer_Key, Consumer_Secret, Access_Token, Access_Token_Secret)#Connect to Twitter
 
 #__Creates Corpus from Tweets__# 
